@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arbitrage Prices</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #1e3c72, #2a5298);
+            color: #fff;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 2.5em;
+            color: #ffcc00;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .date-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #333;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            color: #ffcc00;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .date {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .rab {
+            color: #4CAF50;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            color: #333;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+            color: #000;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #f4f4f9;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .theme-icons {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .theme-icon {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .theme-icon:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-icons">
+        <img src="https://img.icons8.com/ios-filled/50/000000/sun--v1.png" alt="Day Mode" class="theme-icon" onclick="setTheme('day')">
+        <img src="https://img.icons8.com/ios-filled/50/000000/moon-symbol.png" alt="Night Mode" class="theme-icon" onclick="setTheme('night')">
+    </div>
+
+    <h1>Cryptocurrency Prices</h1>
+    <div class="container">
+        <div class="date-container">
+            <span class="date">Date: <span id="date"></span></span>
+            <span class="rab">Rab: <span id="rab"></span></span>
+        </div>
+
+        <table id="priceTable">
+            <tr>
+                <th>Symbol</th>
+                <th>Binance</th>
+                <th>KuCoin</th>
+                <th>Bybit</th>
+            </tr>
+            {% for price in prices %}
+            <tr>
+                <td>{{ price.symbol }}</td>
+                <td>{{ price.binance }}</td>
+                <td>{{ price.kucoin }}</td>
+                <td>{{ price.bybit }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <button id="arbitrageButton">Find Best Arbitrage</button>
+    </div>
+
+    <script>
+        // Set the date and Rab dynamically
+        document.getElementById('date').textContent = new Date().toLocaleDateString();
+
+        // Example Rab data (Replace with actual data)
+        document.getElementById('rab').textContent = "XYZ123";
+
+        document.getElementById('arbitrageButton').addEventListener('click', function() {
+            window.location.href = "{% url 'best_arbitrage' %}";
+        });
+
+        // Theme toggle functionality
+        function setTheme(theme) {
+            const table = document.getElementById('priceTable');
+            if (theme === 'day') {
+                document.body.style.background = "linear-gradient(to bottom right, #e6e6e6, #d9d9d9)";
+                document.body.style.color = "#333";
+                table.style.backgroundColor = "#fff";
+                table.style.color = "#333";
+            } else if (theme === 'night') {
+                document.body.style.background = "linear-gradient(to bottom right, #1e3c72, #2a5298)";
+                document.body.style.color = "#fff";
+                table.style.backgroundColor = "#333";
+                table.style.color = "#fff";
+            }
+        }
+    </script>
+</body>
+</html>

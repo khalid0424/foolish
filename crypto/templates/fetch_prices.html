@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest Prices</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #4CAF50;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #pricesContainer {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #555;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        li:hover {
+            background-color: #e6ffe6;
+        }
+    </style>
+</head>
+<body>
+    <h1>Latest Prices</h1>
+    <button id="refreshPrices">Refresh Prices</button>
+
+    <div id="pricesContainer">
+        <h2>Binance Prices</h2>
+        <ul id="binancePrices">
+            {% for symbol, price in binance_prices.items %}
+            <li>{{ symbol }}: <span>{{ price }}</span></li>
+            {% endfor %}
+        </ul>
+        <h2>KuCoin Prices</h2>
+        <ul id="kucoinPrices">
+            {% for symbol, price in kucoin_prices.items %}
+            <li>{{ symbol }}: <span>{{ price }}</span></li>
+            {% endfor %}
+        </ul>
+        <h2>Bybit Prices</h2>
+        <ul id="bybitPrices">
+            {% for symbol, price in bybit_prices.items %}
+            <li>{{ symbol }}: <span>{{ price }}</span></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script>
+        document.getElementById("refreshPrices").addEventListener("click", function() {
+            fetch("/fetch_prices/")
+                .then(response => response.json())
+                .then(data => {
+                    alert("Prices updated successfully!");
+                    location.reload(); // Reload the page to reflect updated prices
+                })
+                .catch(error => console.error("Error fetching prices:", error));
+        });
+    </script>
+</body>
+</html>

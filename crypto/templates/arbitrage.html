@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arbitrage Opportunities</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #4CAF50;
+            margin-top: 20px;
+        }
+
+        button {
+            display: inline-block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #e6ffe6;
+        }
+
+        td {
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Arbitrage Opportunities</h1>
+    <button id="getBestArbitrage">Get Best Arbitrage</button>
+
+    <table id="arbitrageTable">
+        <tr>
+            <th>Symbol</th>
+            <th>Buy Exchange</th>
+            <th>Buy Price</th>
+            <th>Sell Exchange</th>
+            <th>Sell Price</th>
+            <th>Profit (%)</th>
+        </tr>
+        {% for opportunity in opportunities %}
+        <tr>
+            <td>{{ opportunity.symbol }}</td>
+            <td>{{ opportunity.buy_exchange }}</td>
+            <td>{{ opportunity.buy_price }}</td>
+            <td>{{ opportunity.sell_exchange }}</td>
+            <td>{{ opportunity.sell_price }}</td>
+            <td>{{ opportunity.profit_percentage }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <script>
+        document.getElementById("getBestArbitrage").addEventListener("click", function() {
+            fetch("/best_arbitrage/")
+                .then(response => response.json())
+                .then(data => {
+                    if (data.opportunities && data.opportunities.length > 0) {
+                        const table = document.getElementById("arbitrageTable");
+                        table.innerHTML = `
+                            <tr>
+                                <th>Symbol</th>
+                                <th>Buy Exchange</th>
+                                <th>Buy Price</th>
+                                <th>Sell Exchange</th>
+                                <th>Sell Price</th>
+                                <th>Profit (%)</th>
+                            </tr>
+                        `;
+                        data.opportunities.forEach(opportunity => {
+                            const row = document.createElement("tr");
+                            row.innerHTML = `
+                                <td>${opportunity.symbol}</td>
+                                <td>${opportunity.buy_exchange}</td>
+                                <td>${opportunity.buy_price}</td>
+                                <td>${opportunity.sell_exchange}</td>
+                                <td>${opportunity.sell_price}</td>
+                                <td>${opportunity.profit_percentage}</td>
+                            `;
+                            table.appendChild(row);
+                        });
+                    } else {
+                        alert("No arbitrage opportunities found.");
+                    }
+                })
+                .catch(error => console.error("Error fetching arbitrage:", error));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Arbitrage Opportunity</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin: 20px 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .no-opportunity {
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Best Arbitrage Opportunity</h1>
+    <div class="container">
+        {% if opportunity %}
+        <table>
+            <tr>
+                <th>Symbol</th>
+                <th>Buy From</th>
+                <th>Sell To</th>
+                <th>Profit</th>
+            </tr>
+            <tr>
+                <td>{{ opportunity.symbol }}</td>
+                <td>{{ opportunity.buy_from }}</td>
+                <td>{{ opportunity.sell_to }}</td>
+                <td>{{ opportunity.profit }}</td>
+            </tr>
+        </table>
+        {% else %}
+        <p class="no-opportunity">No arbitrage opportunities found.</p>
+        {% endif %}
+        <button onclick="window.location.href='/'">Back to Home</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to ArbitrageTJK</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #2c3e50, #4ca1af);
+            color: #fff;
+        }
+
+        header {
+            background: linear-gradient(to right, #1c1c1c, #2c3e50);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .lang-selector {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+
+        .lang-selector select {
+            background-color: #2c3e50;
+            color: #fff;
+            border: none;
+            padding: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            color: #bdc3c7;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 30px 0;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            color: #ecf0f1;
+            margin-bottom: 15px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #ecf0f1;
+            text-align: justify;
+        }
+
+        ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        .button-group {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .button {
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            color: white;
+            background-color: #1abc9c;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .button:hover {
+            background-color: #16a085;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-links {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .social-links a {
+            margin: 0 15px;
+            font-size: 2rem;
+            color: #ecf0f1;
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #1abc9c;
+            transform: scale(1.2);
+        }
+
+        footer {
+            background-color: #1c1c1c;
+            color: #bdc3c7;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9rem;
+            margin-top: 50px;
+            box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ArbitrageTJK</h1>
+        <div class="lang-selector">
+            <select id="langSelector">
+                <option value="en">English</option>
+                <option value="ru">Русский</option>
+                <option value="tj">Тоҷикӣ</option>
+            </select>
+        </div>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>About ArbitrageTJK</h2>
+            <p id="aboutText">
+                ArbitrageTJK is a cutting-edge platform that empowers cryptocurrency traders by identifying lucrative arbitrage opportunities across leading exchanges like Binance, KuCoin, and Bybit. 
+                With real-time price tracking and analytics, we ensure that you stay ahead in the volatile world of cryptocurrency trading.
+            </p>
+        </section>
+
+        <section>
+            <h2>Our Vision</h2>
+            <p id="visionText">
+                At ArbitrageTJK, we envision becoming the go-to solution for arbitrage trading in Tajikistan and beyond. Our upcoming features include:
+            </p>
+            <ul id="visionList">
+                <li>AI-powered analytics to predict market trends and profitability.</li>
+                <li>Mobile apps for seamless trading on the go.</li>
+                <li>Integration with over 10 global exchanges for comprehensive market access.</li>
+                <li>Advanced tutorials and resources for beginner and professional traders.</li>
+            </ul>
+        </section>
+
+        <div class="button-group">
+            <button class="button" onclick="window.location.href='/login/'">Login</button>
+            <button class="button" onclick="window.location.href='/signup/'">Sign Up</button>
+        </div>
+    </div>
+
+    <div class="social-links">
+        <h3>Follow Us:</h3>
+        <a href="https://www.youtube.com/@khalid_04." target="_blank">YouTube</a>
+        <a href="https://www.linkedin.com/in/kholid-solehzoda-934951275?originalSubdomain=ru" target="_blank">LinkedIn</a>
+        <a href="https://github.com/khalid0424" target="_blank">GitHub</a>
+        <a href="https://t.me/tecnotoj04" target="_blank">Telegram</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 ArbitrageTJK. All rights reserved. Designed with ❤️ in Tajikistan.</p>
+    </footer>
+
+    <script>
+        const langTexts = {
+            en: {
+                aboutText: "ArbitrageTJK is a cutting-edge platform that empowers cryptocurrency traders by identifying lucrative arbitrage opportunities across leading exchanges like Binance, KuCoin, and Bybit. With real-time price tracking and analytics, we ensure that you stay ahead in the volatile world of cryptocurrency trading.",
+                visionText: "At ArbitrageTJK, we envision becoming the go-to solution for arbitrage trading in Tajikistan and beyond. Our upcoming features include:",
+                visionList: [
+                    "AI-powered analytics to predict market trends and profitability.",
+                    "Mobile apps for seamless trading on the go.",
+                    "Integration with over 10 global exchanges for comprehensive market access.",
+                    "Advanced tutorials and resources for beginner and professional traders."
+                ]
+            },
+            ru: {
+                aboutText: "ArbitrageTJK - это передовая платформа, которая помогает трейдерам криптовалют, выявляя прибыльные возможности арбитража на ведущих биржах, таких как Binance, KuCoin и Bybit. С помощью отслеживания цен в реальном времени и аналитики мы обеспечиваем, чтобы вы всегда были впереди в мире волатильных криптовалютных торгов.",
+                visionText: "В ArbitrageTJK мы стремимся стать основным решением для арбитражной торговли в Таджикистане и за его пределами. Наши будущие функции включают:",
+                visionList: [
+                    "Аналитика на базе ИИ для прогнозирования рыночных трендов и прибыльности.",
+                    "Мобильные приложения для удобной торговли в пути.",
+                    "Интеграция с более чем 10 мировыми биржами для комплексного доступа к рынку.",
+                    "Продвинутые руководства и ресурсы для начинающих и профессиональных трейдеров."
+                ]
+            },
+            tj: {
+                aboutText: "ArbitrageTJK як платформаи пешрафта мебошад, ки ба тиҷоратчиёни криптовалюта кӯмак мекунад, бо шенасоии имкониятҳои фоиданоки арбитраж дар биржаҳои пешрафта, ба монанди Binance, KuCoin ва Bybit. Бо пайгирии нархҳо ва таҳлилҳо дар вақти воқеӣ, мо муваффақиятро дар савдои криптовалюта таъмин мекунем.",
+                visionText: "Дар ArbitrageTJK мо мехоҳем, ки ба ҳалли асосии савдои арбитраж дар Тоҷикистон ва берун аз он табдил ёбем. Хусусиятҳои оянда мо шомил хоҳанд буд:",
+                visionList: [
+                    "Таҳлилҳои бо ИИ барои пешгӯии раванди бозор ва фоида.",
+                    "Барномаҳои мобилӣ барои савдои осон дар роҳи.",
+                    "Интегратсия бо беш аз 10 биржаҳои ҷаҳонӣ барои дастрасии ҳамаҷониба ба бозор.",
+                    "Роҳнамои пешрафта ва манбаъҳои барои тиҷоратчиёни нав ва касбӣ."
+                ]
+            }
+        };
+
+        document.getElementById('langSelector').addEventListener('change', function () {
+            const lang = this.value;
+            document.getElementById('aboutText').innerText = langTexts[lang].aboutText;
+            document.getElementById('visionText').innerText = langTexts[lang].visionText;
+            document.getElementById('visionList').innerHTML = langTexts[lang].visionList.map(item => `<li>${item}</li>`).join('');
+        });
+    </script>
+</body>
+</html>
